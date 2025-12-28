@@ -29,14 +29,6 @@ While building this project, I ran into repeated failures across the static anal
 Most smart contract exploits come from basic mistakes.  
 BlockGuard makes those mistakes visible **before** contracts go live.
 ---
-## Tech stack
-- Nextjs
-- TypeScript
-- Node.js
-- Docker
-- Slither
-- PostgreSQL
-
   ### 1. Slither & Solidity Version Mismatch
 Slither depends on specific Solidity compiler versions, while uploaded contracts often used different pragma ranges. This caused analysis failures that were not immediately obvious.
 
@@ -54,6 +46,14 @@ The upload → compile → analyze → store pipeline was tightly coupled. A fai
 Restarting the backend often caused multiple services to fail due to stale containers and port conflicts.
 
 **Learning:** Dockerized systems need explicit teardown and restart strategies; they are not self-healing by default.
+
+## Tech stack
+- Nextjs
+- TypeScript
+- Node.js
+- Docker
+- Slither
+- PostgreSQL
 
 ## Run locally
 ```bash
