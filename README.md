@@ -29,23 +29,22 @@ While building this project, I ran into repeated failures across the static anal
 Most smart contract exploits come from basic mistakes.  
 BlockGuard makes those mistakes visible **before** contracts go live.
 ---
-  ### 1. Slither & Solidity Version Mismatch
-Slither depends on specific Solidity compiler versions, while uploaded contracts often used different pragma ranges. This caused analysis failures that were not immediately obvious.
+## Key Engineering Challenges
 
-**Learning:** Static analysis tooling is extremely version-sensitive and must validate compiler compatibility before execution.
+### 1. Slither Compatibility Issues
+Slither static analysis often failed when Solidity versions didn’t match what it expected. Contracts with broad pragma ranges would frequently fail without clear error messages, making automated analysis unreliable.
 
+**What we learned:** Solidity tooling is fragile. Integrations must validate compiler versions up front, otherwise silent failures happen.
 
-### 2. Fragile Analysis Pipeline
-The upload → compile → analyze → store pipeline was tightly coupled. A failure at any stage would break the entire flow.
+### 2. Pipeline Fragility
+The analysis flow (upload → compile → analyze → store) was too tightly coupled. If any step failed, the whole pipeline collapsed.
 
-**Learning:** Real-world tooling requires fault tolerance and clear error propagation, not just happy-path execution.
+**What we learned:** Build pipelines that can fail gracefully and report useful feedback back to the user.
 
----
+### 3. Docker Restart Problems
+After making changes, restarting the backend often broke things due to stale containers and conflicting ports.
 
-### 3. Docker Restart & Environment Issues
-Restarting the backend often caused multiple services to fail due to stale containers and port conflicts.
-
-**Learning:** Dockerized systems need explicit teardown and restart strategies; they are not self-healing by default.
+**What we learned:** Container lifecycle needs explicit cleanup logic. Docker compose alone isn’t enough for stable restarts during active development.
 
 ## Tech stack
 - Nextjs
