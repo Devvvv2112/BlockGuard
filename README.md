@@ -1,21 +1,40 @@
-BlockGuard
+# BlockGuard
 
-Smart contract security checks for Solidity.
+Smart contract security checks for Solidity developers.
 
-BlockGuard scans .sol files, detects common vulnerabilities, and explains them in plain English so developers can fix issues early.
+BlockGuard helps you catch common smart contract vulnerabilities early by running static analysis and explaining issues in clear, human language.
 
-Not an audit. A safety net.
-
-Features
-
-Static analysis for Solidity contracts
-
-Finds reentrancy, access control bugs, unsafe calls, dead code
-
-Severity + line numbers + clear explanations
-
-Scan history
-
-Stack
-
-Next.js · Node.js · Docker · Slither · PostgreSQL
+This is not a replacement for professional audits.  
+It’s the first line of defense before deployment.
+---
+## What it does
+- Analyze Solidity (`.sol`) contracts
+- Detect common issues:
+  - Reentrancy
+  - Access control flaws
+  - Unsafe external calls
+  - Dead code
+  - Basic gas inefficiencies
+- Show:
+  - Severity level
+  - Affected line numbers
+  - Plain-English explanations
+- Maintain scan history
+---
+## Why it exists
+Most smart contract exploits come from basic mistakes.  
+BlockGuard makes those mistakes visible **before** contracts go live.
+---
+## Tech stack
+- Nextjs
+- TypeScript
+- Node.js
+- Docker
+- Slither
+- PostgreSQL
+---
+## Run locally
+```bash
+git clone https://github.com/Devvvv2112/BlockGuard.git
+cd BlockGuard
+docker-compose up --build
