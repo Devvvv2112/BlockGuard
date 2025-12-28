@@ -38,3 +38,21 @@ BlockGuard makes those mistakes visible **before** contracts go live.
 git clone https://github.com/Devvvv2112/BlockGuard.git
 cd BlockGuard
 docker-compose up --build
+
+Open: http://localhost:3000
+Recommended Solidity version: ^0.8.x
+
+Disclaimer
+
+Always get a professional audit before deploying contracts with real value.
+
+License
+
+MIT
+
+Then commit it:
+
+```bash
+git add README.md
+git commit -m "docs: polish README"
+git push
